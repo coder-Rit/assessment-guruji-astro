@@ -1,9 +1,9 @@
-const userModel = require("../model/userModel")
-const ErrorHandler = require("../utils/errorHandler")
+const userModel = require("../model/userModel.js")
+const ErrorHandler = require("../utils/errorHandler.js")
 const jwt = require('jsonwebtoken')
-const catchAsyncErorr = require("./catchAsyncErorr") 
+const catchAsyncErorr = require("./catchAsyncErorr.js") 
 
-exports.isAuthenticated = catchAsyncErorr(async(req,res,next)=>{
+const isAuthenticated = catchAsyncErorr(async(req,res,next)=>{
     const {token} = req.cookies 
     if (!token) {
         next(new ErrorHandler("Please login to access this source",400))
@@ -16,7 +16,7 @@ exports.isAuthenticated = catchAsyncErorr(async(req,res,next)=>{
     
 })
 
-exports.authorizedRole = (...Role)=>{
+const authorizedRole = (...Role)=>{
   return  (req,res,next)=>{
         if (!Role.includes(req.user.role)) {
             return next( new ErrorHandler(`${req.user.role} is not allowed to access this source` ))
@@ -24,3 +24,5 @@ exports.authorizedRole = (...Role)=>{
         next()
     }
 }
+
+export default {isAuthenticated,authorizedRole}

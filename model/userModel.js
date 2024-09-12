@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const validator = require("validator")
+import mongoose  from 'mongoose'
+import bcrypt  from 'bcryptjs'
+import jwt  from 'jsonwebtoken'
+import validator  from "validator"
 
 
 
@@ -44,5 +44,5 @@ userSchema.methods.getJWTtoken =  function () {
     })
 }
 
-module.exports = mongoose.model('user', userSchema)
-
+const userModel = mongoose.model('user', userSchema)
+export default userModel;

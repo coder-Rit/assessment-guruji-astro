@@ -1,47 +1,24 @@
-const express = require('express')
-const error = require('./middleware/error')
-const connectTODatabase_app = require('./config/dataBase')
-const cookieParser = require('cookie-parser')
-const bodyParser = require('body-parser')
-const cors  = require("cors")
-const app = express()
+import express  from 'express'
+import error  from './middleware/error.js'
+import logger from "./utils/logger.js";
+import createServer  from'./utils/createServer.js'
+import connect from './utils/connect.js';
+
+import("dotenv").then((dotenv) => {
+  dotenv.config({ path: "config/config.env" });
+});
 
 
-if (process.env.NODE_ENV !== "PRODUCTION") {
-    require("dotenv").config({ path: "config/config.env" });
-  }
- 
-app.use(cors({
-  credentials: true,
-  origin:[process.env.ORIGIN_1,process.env.ORIGIN_2,process.env.ORIGIN_]
-  
-}))
-app.use(express.json())
-app.use(cookieParser())
-app.use(bodyParser.urlencoded({extended:true}))
+const app = createServer();
 
- 
+const port  = process.env.port || 4000;
 
-//connection to the database 
-connectTODatabase_app()
+app.listen(port, async () => {
+  logger.info(`App is running at http://localhost:${port}`);
 
-
-
-app.get("/",(req,res)=>{
-    res.send("🐲🐲nodejs and nginx working fine 🐲🐲 .")
-    console.log("🐲🐲 Working fine 🐲🐲")
-})
- 
-
-
-const userRouter = require('./router/userRouter') 
- 
-
-app.use("/api/v1", userRouter)
- 
-
+  await connect();
+});
  
  
- 
- app.use(error)
-module.exports = app
+app.use(error)
+export default app

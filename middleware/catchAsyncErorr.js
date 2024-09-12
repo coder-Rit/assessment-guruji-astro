@@ -1,3 +1,5 @@
-module.exports = theFunc =>(req,res,next)=>{
+const func = theFunc =>(req,res,next)=>{
     Promise.resolve(theFunc(req,res,next)).catch(next)
 }
+
+export default func
