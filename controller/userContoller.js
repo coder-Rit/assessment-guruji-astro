@@ -7,23 +7,27 @@ const sendJwt = require("../utils/sendJwt");
 
 // signUp
 exports.signUp = catchAsyncErorr(async (req, res, next) => {  
-  let a  = req.body
-  delete a.OTP
-    const newAcc = await userModel.create(a);
+    const {email,password} = req.body;
+
+    if (!email || !password) {
+      return next(
+        new ErrorHandler("Please enter your email and password", 422)
+      );
+    } 
+    const user = await userModel.findOne({email});
+
+    if (user) {
+      return next(
+        new ErrorHandler("This email is aleady registerd", 422)
+      );
+    } 
+
+    const newAcc = await userModel.create(req.body);
+
     sendJwt(newAcc, res, "Account is crated successfully", 201, req);
   
 }); 
-// signUp
-exports.signUpFaculty = catchAsyncErorr(async (req, res, next) => {  
-  let a  = req.body
-     const newAcc = await userModel.create(a);
-
-     res.status(201).json({
-      status: "Account is crated successfully",
-      newUser:newAcc
-     });
-   
-}); 
+ 
  
 // logged in
 exports.login = catchAsyncErorr(async (req, res, next) => {
@@ -34,8 +38,8 @@ exports.login = catchAsyncErorr(async (req, res, next) => {
        new ErrorHandler("Please enter your email or password", 400)
      );
    } 
+
    const user = await userModel.findOne({ email }).select("+password"); 
-   console.log(user);
    if (!user) {
      return next(new ErrorHandler("User does not exist", 400));
    }
@@ -50,12 +54,8 @@ exports.login = catchAsyncErorr(async (req, res, next) => {
  
 // log out
 exports.logOut = catchAsyncErorr((req, res, next) => {
-  res
-    .clearCookie("token", {
-      expire: new Date(Date.now() - 1000),
-      httpOnly: true,
-    })
-    .json({
+  
+  res.json({
       msg: "logout successfully",
       logOut:true
     });

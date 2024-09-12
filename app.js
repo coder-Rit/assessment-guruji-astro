@@ -1,6 +1,6 @@
 const express = require('express')
 const error = require('./middleware/error')
-const connectTODatabase = require('./config/dataBase')
+const connectTODatabase_app = require('./config/dataBase')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const cors  = require("cors")
@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({extended:true}))
  
 
 //connection to the database 
-connectTODatabase()
+connectTODatabase_app()
 
 
 
