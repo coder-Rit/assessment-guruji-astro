@@ -25,9 +25,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build -t guruji-astro.
+      run: docker build -t guruji-astro .
     - name: tagging docker image
-      run: docker tag action-test ritesh001/guruji-astro
+      run: docker tag guruji-astro ritesh001/guruji-astro
     - name: docker login
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: push docker image
