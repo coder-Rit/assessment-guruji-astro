@@ -27,8 +27,8 @@ jobs:
     - name: Build the Docker image
       run: docker build -t action-test.
     - name: tagging docker image
-      run: docker tag action-test ritesh001/testing-actions
+      run: docker tag action-test ritesh001/guruji-astro
     - name: docker login
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: push docker image
-      run: docker push ritesh001/testing-actions
+      run: docker push ritesh001/guruji-astro
