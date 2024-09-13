@@ -1,10 +1,10 @@
-const userModel = require("../model/userModel.js")
-const ErrorHandler = require("../utils/errorHandler.js")
-const jwt = require('jsonwebtoken')
-const catchAsyncErorr = require("./catchAsyncErorr.js") 
+import catchAsyncErorr from "../middleware/catchAsyncErorr.js";
+import userModel from "../model/userModel.js";
+import ErrorHandler from "../utils/errorHandler.js";
+import jwt from 'jsonwebtoken';
 
-const isAuthenticated = catchAsyncErorr(async(req,res,next)=>{
-    const {token} = req.cookies 
+export const isAuthenticated = catchAsyncErorr(async(req,res,next)=>{
+    const {token} = req.cookies
     if (!token) {
         next(new ErrorHandler("Please login to access this source",400))
     }
@@ -12,11 +12,11 @@ const isAuthenticated = catchAsyncErorr(async(req,res,next)=>{
     const decoded =  jwt.verify(token,process.env.JWT_SECREATE)
   
     req.user =  await userModel.findById(decoded.id)
-     next()
+    next()
     
 })
 
-const authorizedRole = (...Role)=>{
+export const authorizedRole = (...Role)=>{
   return  (req,res,next)=>{
         if (!Role.includes(req.user.role)) {
             return next( new ErrorHandler(`${req.user.role} is not allowed to access this source` ))
@@ -24,5 +24,3 @@ const authorizedRole = (...Role)=>{
         next()
     }
 }
-
-export default {isAuthenticated,authorizedRole}

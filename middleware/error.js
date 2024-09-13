@@ -33,7 +33,6 @@ if (err.name === "TokenExpiredError") {
 
 
   res.status(err.statusCode).json({
-      status:false,
       message:err.message
   })
 }

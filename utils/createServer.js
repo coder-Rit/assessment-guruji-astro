@@ -4,6 +4,7 @@ import routes from "../router/routes.js";
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import cors from "cors"
+import error from "../middleware/error.js";
 
 
 function createServer() {
@@ -20,7 +21,7 @@ function createServer() {
   app.use(bodyParser.urlencoded({ extended: true }))
 
   routes(app);
-
+  app.use(error)
   return app;
 }
 

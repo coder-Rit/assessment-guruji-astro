@@ -1,8 +1,8 @@
-import express  from 'express'
 import error  from './middleware/error.js'
 import logger from "./utils/logger.js";
 import createServer  from'./utils/createServer.js'
-import connect from './utils/connect.js';
+import connect from './config/connect.js';
+
 
 import("dotenv").then((dotenv) => {
   dotenv.config({ path: "config/config.env" });
@@ -20,5 +20,5 @@ app.listen(port, async () => {
 });
  
  
-app.use(error)
+
 export default app
