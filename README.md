@@ -8,8 +8,9 @@ This project is a simple recruitment platform where users must authenticate them
 * [Email Server](https://github.com/coder-Rit/assessment-worker-mail-service)
 
 ## High-Level Design
+<img src="https://i.imghippo.com/files/UOkY81726339773.png" alt="" border="0">
 
-<a href="https://ibb.co/Q9jrtK9"><img src="https://i.ibb.co/D4g5TR4/Screenshot-2024-09-14-192554.png" alt="Screenshot-2024-09-14-192554" border="0"></a>
+[Explore Detailed Design](https://excalidraw.com/#json=GANxBf5OHWFl7lO7SwdZL,zEZt__0RG3ItEaaajniveg)
 
 ## Requirements Fulfillment
 1. User Authentication:✅ Implemented
@@ -41,11 +42,9 @@ This project is a simple recruitment platform where users must authenticate them
     
 4. Deployment:✅ CI/CD pipeline implemented using GitHub Actions. The Docker image is automatically updated.  
 
-## Flow Diagrams:
-1. Overall System Flow :
-img
-2. Detailed Process Flow :
-img
+
+<img src="https://i.imghippo.com/files/CjWq21726339876.png" alt="" border="0">
+<img src="https://i.imghippo.com/files/kwf7R1726339935.png" alt="" border="0">
 
 ## Current Issues with project:
 While the worker servers can fetch and process API requests, they cannot post data into MongoDB. Despite multiple attempts, the connection appears to be working fine, but an error persists:
