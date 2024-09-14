@@ -9,7 +9,7 @@ This project is a simple recruitment platform where users must authenticate them
 
 ## High-Level Design
 
-img
+<a href="https://ibb.co/Q9jrtK9"><img src="https://i.ibb.co/D4g5TR4/Screenshot-2024-09-14-192554.png" alt="Screenshot-2024-09-14-192554" border="0"></a>
 
 ## Requirements Fulfillment
 1. User Authentication:✅ Implemented
