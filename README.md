@@ -2,10 +2,10 @@
 
 ## Project Overview
 This project is a simple recruitment platform where users must authenticate themselves before applying for opportunities. The project is divided into four repositories:
-Client
-Primary Server
-Worker
-Email Server
+* [Client](https://github.com/coder-Rit/assessment-client-guruji-astro)
+* [Primary Server](https://github.com/coder-Rit/assessment-guruji-astro)
+* [Worker](https://github.com/coder-Rit/assessment-worker-guruji-astro)
+* [Email Server](https://github.com/coder-Rit/assessment-worker-mail-service)
 
 ## High-Level Design
 
