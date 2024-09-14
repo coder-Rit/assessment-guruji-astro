@@ -1,10 +1,12 @@
+import { createClient } from 'redis';
 
 
-const redisClient = {
-  host: process.env.REDIS_URI, // Replace with your Redis server hostname or IP
-  port: process.env.REDIS_PORT, // Replace with your Redis server port if needed
-  username: process.env.REDIS_USER,  // Redis username (if required, for Redis 6+)
-  password: process.env.REDIS_PASSWORD,  // Redis password
-}
+// const client = createClient({url: "rediss://red-cri49fd6l47c73dta9ig:Y6Lgc6NHb4UMkeoBfPwcPdK40WlMLTHW@singapore-redis.render.com:6379"})
+//   .on('error', err => console.log('Redis Client Error', err))
 
-export default redisClient;
+const client = createClient({url: "rediss://red-cri49fd6l47c73dta9ig:Y6Lgc6NHb4UMkeoBfPwcPdK40WlMLTHW@singapore-redis.render.com:6379"})
+  .on('error', err => console.log('Redis Client Error', err))
+
+ 
+
+export default client;

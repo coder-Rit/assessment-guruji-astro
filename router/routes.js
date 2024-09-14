@@ -1,5 +1,5 @@
 
-import { applyToJob } from '../controller/jobController.js'
+import { applyToJob ,getJobs} from '../controller/jobController.js'
 import { login, logout, signUp } from '../controller/userContoller.js'
 import { isAuthenticated } from '../middleware/auth.js'
  
@@ -15,8 +15,8 @@ import { isAuthenticated } from '../middleware/auth.js'
 
 
 
-    // app.get("/api/v1/job/get",isAuthenticated, getJobs)
-    app.post("/api/v1/job/apply",isAuthenticated, applyToJob)
+    app.get("/api/v1/job/get", getJobs)
+    app.put("/api/v1/job/apply",isAuthenticated, applyToJob)
     // app.put("/api/v1/job/application/delete",isAuthenticated, deleteApplication)
 } 
 

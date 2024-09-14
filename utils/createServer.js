@@ -5,20 +5,24 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import cors from "cors"
 import error from "../middleware/error.js";
+import dotenv from "dotenv";
 
 
 function createServer() {
   const app = express();
 
 
-  app.use(cors({
-    credentials: true,
-    origin: [process.env.ORIGIN_1, process.env.ORIGIN_2, process.env.ORIGIN_3]
-  }))
+
+  dotenv.config({ path: "./config/config.env" });
 
   app.use(express.json())
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ extended: true }))
+
+  app.use(cors({
+    origin: [process.env.ORIGIN_CLIENT, process.env.ORIGIN_WORKER, process.env.ORIGIN_3],
+    credentials: true,
+  }))
 
   routes(app);
   app.use(error)

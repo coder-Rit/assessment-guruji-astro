@@ -9,6 +9,10 @@ on:
 env:
   PORT: ${{secrets.PORT}}
   DB_URI_APP: ${{secrets.DB_URI_APP}}
+
+  ORIGIN_CLIENT: ${{secrets.ORIGIN_CLIENT}}
+  ORIGIN_WORKER: ${{secrets.ORIGIN_WORKER}}
+  ORIGIN_3: ${{secrets.ORIGIN_3}}
   
   JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
   JWT_SECREATE: ${{secrets.JWT_SECREATE}}
